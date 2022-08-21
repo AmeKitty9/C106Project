@@ -9,47 +9,48 @@ function modelReady()
     classifier.classify(gotResults);
 }
 
+var meowCount = 0;
+var barkCount = 0;
+var roarCount = 0;
+var moooCount = 0;
+
 function gotResults(error, results)
 {
-    console.log('gotResults')
-    // if (error) {
-    //     console.error(error);
-    // }
-    // else {
-    //     console.log(results);
-    //     random_number_r = Math.floor(Math.random() * 255) + 1;
-    //     random_number_g = Math.floor(Math.random() * 255) + 1;
-    //     random_number_b = Math.floor(Math.random() * 255) + 1;
+    if (error) {
+        console.error(error);
+    }
+    else {
+        console.log(results);
+        random_number_r = Math.floor(Math.random() * 255) + 1;
+        random_number_g = Math.floor(Math.random() * 255) + 1;
+        random_number_b = Math.floor(Math.random() * 255) + 1;
 
-    //     document.getElementById("animal_voice").innerHTML = 'Detected animal - ' + results[0].label;
-    //     document.getElementById("result_label").style.color = "rgb(" + random_number_r + "," + random_number_g + "," + random_number_b + ")";
-    //     document.getElementById("result_confidence").style.color = "rgb(" + random_number_r + "," + random_number_g + "," + random_number_b + ")";
+        document.getElementById("animal_voice").innerHTML = 'Detected animal - ' + results[0].label;
+        document.getElementById("animal_voice").style.color = "rgb(" + random_number_r + "," + random_number_g + "," + random_number_b + ")";
 
-    //     img = document.getElementById('alien1')
-    //     img1 = document.getElementById('alien2')
-    //     img2 = document.getElementById('alien3')
-    //     img3 = document.getElementById('alien4')
+        meow = document.getElementById('number_of_meows')
+        bark = document.getElementById('number_of_barks')
+        roar = document.getElementById('number_of_roars')
+        mooo = document.getElementById('number_of_mooos')
+        pic = document.getElementById('pic')
 
-    //     if (results[0].label == "Barking") {
-    //         img.src = 'aliens-01.gif';
-    //         img1.src = 'aliens-02.png';
-    //         img2.src = 'aliens-03.png';
-    //         img3.src = 'aliens-04.png';
-    //     } else if (results[0].label == "Snap") {
-    //         img.src = 'aliens-01.png';
-    //         img1.src = 'aliens-02.gif';
-    //         img2.src = 'aliens-03.png';
-    //         img3.src = 'aliens-04.png';
-    //     } else if (results[0].label == "Piano") {
-    //         img.src = 'aliens-01.png';
-    //         img1.src = 'aliens-02.png';
-    //         img2.src = 'aliens-03.gif';
-    //         img3.src = 'aliens-04.png';
-    //     } else {
-    //         img.src = 'aliens-01.png';
-    //         img1.src = 'aliens-02.png';
-    //         img2.src = 'aliens-03.png';
-    //         img3.src = 'aliens-04.gif';
-    //     }
-    // }
+        if (results[0].label == "Meowing") {
+            pic.src = 'cat.gif';
+            meowCount = meowCount + 1;
+            meow.innerHTML = "Meow count: " + meowCount;
+        } 
+    else if (results[0].label == "Barking") {
+            pic.src = 'dog.gif';
+            barkCount = barkCount + 1;
+            bark.innerHTML = "Bark count: " + barkCount;
+        } else if (results[0].label == "Roar") {
+            pic.src = 'lion.gif';
+            roarCount = roarCount + 1;
+            roar.innerHTML = "Roar count: " + roarCount;
+        } else {
+            pic.src = 'cow.gif';
+            moooCount = moooCount + 1;
+            mooo.innerHTML = "Mooo count: " + moooCount;
+        }
+    }
 }
